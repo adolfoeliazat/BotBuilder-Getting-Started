@@ -122,5 +122,77 @@ namespace NavigationBot.Properties {
                 return ResourceManager.GetString("Topic1_Nav_Cmd", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Topic 2.1.
+        /// </summary>
+        internal static string Topic2_1_Nav_Cmd {
+            get {
+                return ResourceManager.GetString("Topic2_1_Nav_Cmd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Topic 2.2.
+        /// </summary>
+        internal static string Topic2_2_Nav_Cmd {
+            get {
+                return ResourceManager.GetString("Topic2_2_Nav_Cmd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Topic 2.3.
+        /// </summary>
+        internal static string Topic2_3_Nav_Cmd {
+            get {
+                return ResourceManager.GetString("Topic2_3_Nav_Cmd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Topic 2.
+        /// </summary>
+        internal static string Topic2_Nav_Cmd {
+            get {
+                return ResourceManager.GetString("Topic2_Nav_Cmd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Topic 3.1.
+        /// </summary>
+        internal static string Topic3_1_Nav_Cmd {
+            get {
+                return ResourceManager.GetString("Topic3_1_Nav_Cmd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Topic 3.2.
+        /// </summary>
+        internal static string Topic3_2_Nav_Cmd {
+            get {
+                return ResourceManager.GetString("Topic3_2_Nav_Cmd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Topic 3.3.
+        /// </summary>
+        internal static string Topic3_3_Nav_Cmd {
+            get {
+                return ResourceManager.GetString("Topic3_3_Nav_Cmd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Topic 3.
+        /// </summary>
+        internal static string Topic3_Nav_Cmd1 {
+            get {
+                return ResourceManager.GetString("Topic3_Nav_Cmd1", resourceCulture);
+            }
+        }
     }
 }

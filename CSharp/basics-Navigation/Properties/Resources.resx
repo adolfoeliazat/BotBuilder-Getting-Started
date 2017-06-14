@@ -138,4 +138,28 @@
   <data name="Topic1_Nav_Cmd" xml:space="preserve">
     <value>Topic 1</value>
   </data>
+  <data name="Topic2_1_Nav_Cmd" xml:space="preserve">
+    <value>Topic 2.1</value>
+  </data>
+  <data name="Topic2_2_Nav_Cmd" xml:space="preserve">
+    <value>Topic 2.2</value>
+  </data>
+  <data name="Topic2_3_Nav_Cmd" xml:space="preserve">
+    <value>Topic 2.3</value>
+  </data>
+  <data name="Topic2_Nav_Cmd" xml:space="preserve">
+    <value>Topic 2</value>
+  </data>
+  <data name="Topic3_1_Nav_Cmd" xml:space="preserve">
+    <value>Topic 3.1</value>
+  </data>
+  <data name="Topic3_2_Nav_Cmd" xml:space="preserve">
+    <value>Topic 3.2</value>
+  </data>
+  <data name="Topic3_3_Nav_Cmd" xml:space="preserve">
+    <value>Topic 3.3</value>
+  </data>
+  <data name="Topic3_Nav_Cmd1" xml:space="preserve">
+    <value>Topic 3</value>
+  </data>
 </root>
