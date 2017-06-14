@@ -126,8 +126,12 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\MessagesController.cs" />
     <Compile Include="Dialogs\RootDialog.cs" />
+    <Compile Include="Dialogs\Topic2Dialog.cs" />
+    <Compile Include="Dialogs\Topic2_1_Dialog.cs" />
     <Compile Include="Dialogs\Topic1_1_Dialog.cs" />
+    <Compile Include="Dialogs\Topic2_2_Dialog.cs" />
     <Compile Include="Dialogs\Topic1_2_Dialog.cs" />
+    <Compile Include="Dialogs\Topic2_3_Dialog.cs" />
     <Compile Include="Dialogs\Topic1_3_Dialog.cs" />
     <Compile Include="Dialogs\Topic1Dialog.cs" />
     <Compile Include="Global.asax.cs">
@@ -155,6 +159,7 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
