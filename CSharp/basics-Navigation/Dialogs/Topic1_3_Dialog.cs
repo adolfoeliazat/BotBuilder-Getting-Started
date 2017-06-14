@@ -7,7 +7,7 @@ namespace NavigationBot.Dialogs
     using Microsoft.Bot.Connector;
     using Properties;
 
-    public class SubBot1_3_Dialog : IDialog<object>
+    public class Topic1_3_Dialog : IDialog<object>
     {
         public async Task StartAsync(IDialogContext context)
         {
@@ -56,7 +56,7 @@ namespace NavigationBot.Dialogs
 
                 if (message == Resources.MoreReply)
                 {
-                    PromptDialog.Choice(context, this.FourthPromptResumeAfter, new[] { Resources.SubBot1_Menu, Resources.MainBot_Menu }, "SubBot 1.3 Dialog is done. What do you want to do next?...", "I'm sorry, I don't understand. Please try again.");
+                    PromptDialog.Choice(context, this.FourthPromptResumeAfter, new[] { Resources.Topic1_Nav_Cmd, Resources.MainBot_Menu }, "SubBot 1.3 Dialog is done. What do you want to do next?...", "I'm sorry, I don't understand. Please try again.");
                 }
             }
             catch (TooManyAttemptsException)

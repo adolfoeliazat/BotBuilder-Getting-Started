@@ -22,21 +22,21 @@ namespace NavigationBot.Dialogs
             var message = await result;
 
             // If the message matches a navigation command, take the correct action (post something to the conversation, call a dialog to change the conversation flow, etc.
-            if (message.Text.ToLowerInvariant() == Resources.SubBot1_Menu.ToLowerInvariant())
+            if (message.Text.ToLowerInvariant() == Resources.Topic1_Nav_Cmd.ToLowerInvariant())
             {
                 await this.ShowNavMenuAsync(context);
             }
-            else if (message.Text.ToLowerInvariant() == Resources.SubBot1_1_Menu.ToLowerInvariant())
+            else if (message.Text.ToLowerInvariant() == Resources.Topic1_1_Nav_Cmd.ToLowerInvariant())
             {
-                context.Call(new SubBot1_1_Dialog(), this.SubBot1_X_DialogResumeAfter);
+                context.Call(new Topic1_1_Dialog(), this.SubBot1_X_DialogResumeAfter);
             }
-            else if (message.Text.ToLowerInvariant() == Resources.SubBot1_2_Menu.ToLowerInvariant())
+            else if (message.Text.ToLowerInvariant() == Resources.Topic1_2_Nav_Cmd.ToLowerInvariant())
             {
-                context.Call(new SubBot1_2_Dialog(), this.SubBot1_X_DialogResumeAfter);
+                context.Call(new Topic1_2_Dialog(), this.SubBot1_X_DialogResumeAfter);
             }
-            else if (message.Text.ToLowerInvariant() == Resources.SubBot1_3_Menu.ToLowerInvariant())
+            else if (message.Text.ToLowerInvariant() == Resources.Topic1_3_Nav_Cmd.ToLowerInvariant())
             {
-                context.Call(new SubBot1_3_Dialog(), this.SubBot1_X_DialogResumeAfter);
+                context.Call(new Topic1_3_Dialog(), this.SubBot1_X_DialogResumeAfter);
             }
             else
             {
@@ -69,9 +69,9 @@ namespace NavigationBot.Dialogs
             {
                 Buttons = new List<CardAction>
                 {
-                    new CardAction(ActionTypes.ImBack, Resources.SubBot1_1_Menu, value: Resources.SubBot1_1_Menu),
-                    new CardAction(ActionTypes.ImBack, Resources.SubBot1_2_Menu, value: Resources.SubBot1_2_Menu),
-                    new CardAction(ActionTypes.ImBack, Resources.SubBot1_3_Menu, value: Resources.SubBot1_3_Menu),
+                    new CardAction(ActionTypes.ImBack, Resources.Topic1_1_Nav_Cmd, value: Resources.Topic1_1_Nav_Cmd),
+                    new CardAction(ActionTypes.ImBack, Resources.Topic1_2_Nav_Cmd, value: Resources.Topic1_2_Nav_Cmd),
+                    new CardAction(ActionTypes.ImBack, Resources.Topic1_3_Nav_Cmd, value: Resources.Topic1_3_Nav_Cmd),
                     new CardAction(ActionTypes.ImBack, Resources.MainBot_Menu, value: Resources.MainBot_Menu)
                 }
             };

@@ -126,9 +126,9 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\MessagesController.cs" />
     <Compile Include="Dialogs\RootDialog.cs" />
-    <Compile Include="Dialogs\SubBot1_1_Dialog.cs" />
-    <Compile Include="Dialogs\SubBot1_2_Dialog.cs" />
-    <Compile Include="Dialogs\SubBot1_3_Dialog.cs" />
+    <Compile Include="Dialogs\Topic1_1_Dialog.cs" />
+    <Compile Include="Dialogs\Topic1_2_Dialog.cs" />
+    <Compile Include="Dialogs\Topic1_3_Dialog.cs" />
     <Compile Include="Dialogs\Topic1Dialog.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

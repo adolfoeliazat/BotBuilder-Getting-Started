@@ -7,11 +7,11 @@ namespace NavigationBot.Dialogs
     using Microsoft.Bot.Connector;
     using Properties;
 
-    public class SubBot1_2_Dialog : IDialog<object>
+    public class Topic1_1_Dialog : IDialog<object>
     {
         public async Task StartAsync(IDialogContext context)
         {
-            PromptDialog.Choice(context, this.FirstPromptResumeAfter, new[] { Resources.MoreReply }, "SubBot 1.2 Dialog dialog text...", "I'm sorry, I don't understand. Please try again.");
+            PromptDialog.Choice(context, this.FirstPromptResumeAfter, new[] { Resources.MoreReply }, "SubBot 1.1 Dialog dialog text...", "I'm sorry, I don't understand. Please try again.");
         }
 
         private async Task FirstPromptResumeAfter(IDialogContext context, IAwaitable<string> result)
@@ -22,7 +22,7 @@ namespace NavigationBot.Dialogs
 
                 if (message == Resources.MoreReply)
                 {
-                    PromptDialog.Choice(context, this.SecondPromptResumeAfter, new[] { Resources.MoreReply }, "SubBot 1.2 Dialog second dialog text...", "I'm sorry, I don't understand. Please try again.");
+                    PromptDialog.Choice(context, this.SecondPromptResumeAfter, new[] { Resources.MoreReply }, "SubBot 1.1 Dialog second dialog text...", "I'm sorry, I don't understand. Please try again.");
                 }
             }
             catch (TooManyAttemptsException)
@@ -39,7 +39,7 @@ namespace NavigationBot.Dialogs
 
                 if (message == Resources.MoreReply)
                 {
-                    PromptDialog.Choice(context, this.ThirdPromptResumeAfter, new[] { Resources.MoreReply }, "SubBot 1.2 Dialog third dialog text...", "I'm sorry, I don't understand. Please try again.");
+                    PromptDialog.Choice(context, this.ThirdPromptResumeAfter, new[] { Resources.MoreReply }, "SubBot 1.1 Dialog third dialog text...", "I'm sorry, I don't understand. Please try again.");
                 }
             }
             catch (TooManyAttemptsException)
@@ -56,7 +56,7 @@ namespace NavigationBot.Dialogs
 
                 if (message == Resources.MoreReply)
                 {
-                    PromptDialog.Choice(context, this.FourthPromptResumeAfter, new[] { Resources.SubBot1_Menu, Resources.MainBot_Menu }, "SubBot 1.2 Dialog is done. What do you want to do next?...", "I'm sorry, I don't understand. Please try again.");
+                    PromptDialog.Choice(context, this.FourthPromptResumeAfter, new[] { Resources.Topic1_Nav_Cmd, Resources.MainBot_Menu }, "SubBot 1.1 Dialog is done. What do you want to do next?...", "I'm sorry, I don't understand. Please try again.");
                 }
             }
             catch (TooManyAttemptsException)
@@ -71,7 +71,7 @@ namespace NavigationBot.Dialogs
             {
                 var message = await result;
 
-                // If we got here, it's because something other than a navigation command happened, and this dialog only supports navigation commands.
+                // If we got here, it's because something other than a navigation command was sent, and at this point only navigation commands are supported.
                 await this.StartOverAsync(context, $"I'm sorry, I don't understand '{ message }'.");
             }
             catch (TooManyAttemptsException)
