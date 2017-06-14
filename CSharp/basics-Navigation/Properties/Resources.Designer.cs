@@ -72,9 +72,9 @@ namespace NavigationBot.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Menu.
         /// </summary>
-        internal static string MainBot_Nav_Cmd {
+        internal static string Main_Nav_Cmd {
             get {
-                return ResourceManager.GetString("MainBot_Nav_Cmd", resourceCulture);
+                return ResourceManager.GetString("Main_Nav_Cmd", resourceCulture);
             }
         }
         

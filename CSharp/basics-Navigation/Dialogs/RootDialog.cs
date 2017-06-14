@@ -22,21 +22,25 @@ namespace NavigationBot.Dialogs
             var message = await result;
 
             // If the message matches a navigation command, take the correct action (post something to the conversation, call a dialog to change the conversation flow, etc.
-            if (message.Text.ToLowerInvariant() == Resources.Topic1_Nav_Cmd.ToLowerInvariant())
+            if (message.Text.ToLowerInvariant() == Resources.Main_Nav_Cmd.ToLowerInvariant())
             {
                 await this.ShowNavMenuAsync(context);
             }
+            else if (message.Text.ToLowerInvariant() == Resources.Topic1_Nav_Cmd.ToLowerInvariant())
+            {
+                context.Call(new Topic1Dialog(), this.TopicX_X_DialogResumeAfter);
+            }
             else if (message.Text.ToLowerInvariant() == Resources.Topic1_1_Nav_Cmd.ToLowerInvariant())
             {
-                context.Call(new Topic1_1_Dialog(), this.SubBot1_X_DialogResumeAfter);
+                context.Call(new Topic1_1_Dialog(), this.TopicX_X_DialogResumeAfter);
             }
             else if (message.Text.ToLowerInvariant() == Resources.Topic1_2_Nav_Cmd.ToLowerInvariant())
             {
-                context.Call(new Topic1_2_Dialog(), this.SubBot1_X_DialogResumeAfter);
+                context.Call(new Topic1_2_Dialog(), this.TopicX_X_DialogResumeAfter);
             }
             else if (message.Text.ToLowerInvariant() == Resources.Topic1_3_Nav_Cmd.ToLowerInvariant())
             {
-                context.Call(new Topic1_3_Dialog(), this.SubBot1_X_DialogResumeAfter);
+                context.Call(new Topic1_3_Dialog(), this.TopicX_X_DialogResumeAfter);
             }
             else
             {
@@ -45,7 +49,7 @@ namespace NavigationBot.Dialogs
             }
         }
 
-        private async Task SubBot1_X_DialogResumeAfter(IDialogContext context, IAwaitable<object> result)
+        private async Task TopicX_X_DialogResumeAfter(IDialogContext context, IAwaitable<object> result)
         {
             try
             {
@@ -69,10 +73,7 @@ namespace NavigationBot.Dialogs
             {
                 Buttons = new List<CardAction>
                 {
-                    new CardAction(ActionTypes.ImBack, Resources.Topic1_1_Nav_Cmd, value: Resources.Topic1_1_Nav_Cmd),
-                    new CardAction(ActionTypes.ImBack, Resources.Topic1_2_Nav_Cmd, value: Resources.Topic1_2_Nav_Cmd),
-                    new CardAction(ActionTypes.ImBack, Resources.Topic1_3_Nav_Cmd, value: Resources.Topic1_3_Nav_Cmd),
-                    new CardAction(ActionTypes.ImBack, Resources.MainBot_Menu, value: Resources.MainBot_Menu)
+                    new CardAction(ActionTypes.ImBack, Resources.Topic1_Nav_Cmd, value: Resources.Topic1_Nav_Cmd),
                 }
             };
 

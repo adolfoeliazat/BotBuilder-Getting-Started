@@ -1,65 +1,49 @@
-﻿using Microsoft.Bot.Builder.Dialogs;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Threading.Tasks;
-using Microsoft.Bot.Connector;
-using NavigationBot.Properties;
-
-namespace NavigationBot.Dialogs
+﻿namespace NavigationBot.Dialogs
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+    using Microsoft.Bot.Builder.Dialogs;
+    using Microsoft.Bot.Connector;
+    using Properties;
+
     [Serializable]
     public class Topic1Dialog : IDialog<object>
     {
         public async Task StartAsync(IDialogContext context)
         {
-            await this.ShowMenuAsync(context);
+            await this.ShowNavMenuAsync(context);
         }
 
-        private async Task ShowMenuAsync(IDialogContext context)
+        private async Task ShowNavMenuAsync(IDialogContext context)
         {
             var reply = context.MakeMessage();
 
-            reply.AttachmentLayout = AttachmentLayoutTypes.Carousel;
-            
-            reply.Attachments.Add(CreateHeroCardAttachment(Resources.Topic1_1_Option));
-            reply.Attachments.Add(CreateHeroCardAttachment(Resources.Topic1_2_Option));
-            reply.Attachments.Add(CreateHeroCardAttachment(Resources.Topic1_3_Option));
-
-            await context.PostAsync(reply);
-
-            context.Wait(this.ShowMenuResumeAfterAsync);
-        }
-
-        private async Task ShowMenuResumeAfterAsync(IDialogContext context, IAwaitable<IMessageActivity> result)
-        {
-            var message = await result;
-
-            // This is a navigation dialog, every choice should be a global command, so if we get here the user responded with something other than
-            //  one of the navigation options.
-            await this.StartOverAsync(context, $"I'm sorry, I don't understand '{ message.Text }'.");
-        }
-
-        private Attachment CreateHeroCardAttachment(string title)
-        {
-            var heroCard = new HeroCard
+            var menuHeroCard = new HeroCard
             {
-                Title = title,
-                Text = $"To learn more about { title }...",
-
-                Images = new List<CardImage>() {
-                        new CardImage($"https://placeholdit.imgix.net/~text?txtsize=28&txt={ HttpContext.Current.Server.UrlEncode(title) }&w=320&h=160") },
-
                 Buttons = new List<CardAction>
                 {
-                    new CardAction(ActionTypes.ImBack, title, value: title)
+                    new CardAction(ActionTypes.ImBack, Resources.Topic1_1_Nav_Cmd, value: Resources.Topic1_1_Nav_Cmd),
+                    new CardAction(ActionTypes.ImBack, Resources.Topic1_2_Nav_Cmd, value: Resources.Topic1_2_Nav_Cmd),
+                    new CardAction(ActionTypes.ImBack, Resources.Topic1_3_Nav_Cmd, value: Resources.Topic1_3_Nav_Cmd),
                 }
             };
 
-            return heroCard.ToAttachment();
+            reply.Attachments.Add(menuHeroCard.ToAttachment());
+
+            await context.PostAsync(reply);
+
+            context.Wait(this.ShowNavMenuResumeAfterAsync);
         }
 
+        private async Task ShowNavMenuResumeAfterAsync(IDialogContext context, IAwaitable<IMessageActivity> result)
+        {
+            var message = await result;
+
+            // If we got here, it's because something other than a navigation command was sent to the bot (navigation commands are handled in NavigationScorable middleware), 
+            //  and this dialog only supports navigation commands, so explain bot doesn't understand the message.
+            await this.StartOverAsync(context, string.Format(Resources.Do_Not_Understand, message.Text));
+        }
 
         private async Task StartOverAsync(IDialogContext context, string text)
         {
@@ -71,7 +55,7 @@ namespace NavigationBot.Dialogs
         private async Task StartOverAsync(IDialogContext context, IMessageActivity message)
         {
             await context.PostAsync(message);
-            await this.ShowMenuAsync(context);
+            await this.ShowNavMenuAsync(context);
         }
     }
 }

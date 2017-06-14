@@ -120,7 +120,7 @@
   <data name="Do_Not_Understand" xml:space="preserve">
     <value>I'm sorry, I don't understand '{0}'. Please try again.</value>
   </data>
-  <data name="MainBot_Nav_Cmd" xml:space="preserve">
+  <data name="Main_Nav_Cmd" xml:space="preserve">
     <value>Menu</value>
   </data>
   <data name="MoreReply" xml:space="preserve">
