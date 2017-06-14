@@ -42,6 +42,25 @@ namespace NavigationBot.Dialogs
             {
                 context.Call(new Topic1_3_Dialog(), this.TopicX_X_DialogResumeAfter);
             }
+
+            else if (message.Text.ToLowerInvariant() == Resources.Topic2_Nav_Cmd.ToLowerInvariant())
+            {
+                context.Call(new Topic2Dialog(), this.TopicX_X_DialogResumeAfter);
+            }
+            else if (message.Text.ToLowerInvariant() == Resources.Topic2_1_Nav_Cmd.ToLowerInvariant())
+            {
+                context.Call(new Topic2_1_Dialog(), this.TopicX_X_DialogResumeAfter);
+            }
+            else if (message.Text.ToLowerInvariant() == Resources.Topic2_2_Nav_Cmd.ToLowerInvariant())
+            {
+                context.Call(new Topic2_2_Dialog(), this.TopicX_X_DialogResumeAfter);
+            }
+            else if (message.Text.ToLowerInvariant() == Resources.Topic2_3_Nav_Cmd.ToLowerInvariant())
+            {
+                context.Call(new Topic2_3_Dialog(), this.TopicX_X_DialogResumeAfter);
+            }
+
+
             else
             {
                 // Else something other than a navigation command was sent, and this dialog only supports navigation commands, so explain the bot doesn't understand the command.

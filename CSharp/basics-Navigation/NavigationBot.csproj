@@ -126,6 +126,10 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\MessagesController.cs" />
     <Compile Include="Dialogs\RootDialog.cs" />
+    <Compile Include="Dialogs\Topic3Dialog.cs" />
+    <Compile Include="Dialogs\Topic3_1_Dialog.cs" />
+    <Compile Include="Dialogs\Topic3_2_Dialog.cs" />
+    <Compile Include="Dialogs\Topic3_3_Dialog.cs" />
     <Compile Include="Dialogs\Topic2Dialog.cs" />
     <Compile Include="Dialogs\Topic2_1_Dialog.cs" />
     <Compile Include="Dialogs\Topic1_1_Dialog.cs" />

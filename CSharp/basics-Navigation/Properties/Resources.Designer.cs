@@ -189,9 +189,9 @@ namespace NavigationBot.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Topic 3.
         /// </summary>
-        internal static string Topic3_Nav_Cmd1 {
+        internal static string Topic3_Nav_Cmd {
             get {
-                return ResourceManager.GetString("Topic3_Nav_Cmd1", resourceCulture);
+                return ResourceManager.GetString("Topic3_Nav_Cmd", resourceCulture);
             }
         }
     }

@@ -32,10 +32,24 @@ namespace NavigationBot.Navigation
             this.navigationCommands = new List<string>();
 
             this.navigationCommands.Add(Resources.Main_Nav_Cmd);
+
+            // Topic 1
             this.navigationCommands.Add(Resources.Topic1_Nav_Cmd);
             this.navigationCommands.Add(Resources.Topic1_1_Nav_Cmd);
             this.navigationCommands.Add(Resources.Topic1_2_Nav_Cmd);
             this.navigationCommands.Add(Resources.Topic1_3_Nav_Cmd);
+
+            // Topic 2
+            this.navigationCommands.Add(Resources.Topic2_Nav_Cmd);
+            this.navigationCommands.Add(Resources.Topic2_1_Nav_Cmd);
+            this.navigationCommands.Add(Resources.Topic2_2_Nav_Cmd);
+            this.navigationCommands.Add(Resources.Topic2_3_Nav_Cmd);
+
+            // Topic 3
+            this.navigationCommands.Add(Resources.Topic3_Nav_Cmd);
+            this.navigationCommands.Add(Resources.Topic3_1_Nav_Cmd);
+            this.navigationCommands.Add(Resources.Topic3_2_Nav_Cmd);
+            this.navigationCommands.Add(Resources.Topic3_3_Nav_Cmd);
         }
 
         protected override async Task<string> PrepareAsync(IActivity activity, CancellationToken token)

@@ -159,7 +159,7 @@
   <data name="Topic3_3_Nav_Cmd" xml:space="preserve">
     <value>Topic 3.3</value>
   </data>
-  <data name="Topic3_Nav_Cmd1" xml:space="preserve">
+  <data name="Topic3_Nav_Cmd" xml:space="preserve">
     <value>Topic 3</value>
   </data>
 </root>
