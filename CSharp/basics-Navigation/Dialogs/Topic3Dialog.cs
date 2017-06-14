@@ -26,6 +26,7 @@
                     new CardAction(ActionTypes.ImBack, Resources.Topic3_1_Nav_Cmd, value: Resources.Topic3_1_Nav_Cmd),
                     new CardAction(ActionTypes.ImBack, Resources.Topic3_2_Nav_Cmd, value: Resources.Topic3_2_Nav_Cmd),
                     new CardAction(ActionTypes.ImBack, Resources.Topic3_3_Nav_Cmd, value: Resources.Topic3_3_Nav_Cmd),
+                    new CardAction(ActionTypes.ImBack, Resources.Main_Nav_Cmd, value: Resources.Main_Nav_Cmd)
                 }
             };
 

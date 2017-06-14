@@ -23,9 +23,10 @@
             {
                 Buttons = new List<CardAction>
                 {
-                    new CardAction(ActionTypes.ImBack, Resources.Topic1_1_Nav_Cmd, value: Resources.Topic2_1_Nav_Cmd),
-                    new CardAction(ActionTypes.ImBack, Resources.Topic1_2_Nav_Cmd, value: Resources.Topic2_2_Nav_Cmd),
-                    new CardAction(ActionTypes.ImBack, Resources.Topic1_3_Nav_Cmd, value: Resources.Topic2_3_Nav_Cmd),
+                    new CardAction(ActionTypes.ImBack, Resources.Topic2_1_Nav_Cmd, value: Resources.Topic2_1_Nav_Cmd),
+                    new CardAction(ActionTypes.ImBack, Resources.Topic2_2_Nav_Cmd, value: Resources.Topic2_2_Nav_Cmd),
+                    new CardAction(ActionTypes.ImBack, Resources.Topic2_3_Nav_Cmd, value: Resources.Topic2_3_Nav_Cmd),
+                    new CardAction(ActionTypes.ImBack, Resources.Main_Nav_Cmd, value: Resources.Main_Nav_Cmd)
                 }
             };
 

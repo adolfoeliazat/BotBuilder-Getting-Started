@@ -26,6 +26,7 @@ namespace NavigationBot.Dialogs
             {
                 await this.ShowNavMenuAsync(context);
             }
+            // Topic 1
             else if (message.Text.ToLowerInvariant() == Resources.Topic1_Nav_Cmd.ToLowerInvariant())
             {
                 context.Call(new Topic1Dialog(), this.TopicX_X_DialogResumeAfter);
@@ -43,6 +44,7 @@ namespace NavigationBot.Dialogs
                 context.Call(new Topic1_3_Dialog(), this.TopicX_X_DialogResumeAfter);
             }
 
+            // Topic 2
             else if (message.Text.ToLowerInvariant() == Resources.Topic2_Nav_Cmd.ToLowerInvariant())
             {
                 context.Call(new Topic2Dialog(), this.TopicX_X_DialogResumeAfter);
@@ -60,6 +62,23 @@ namespace NavigationBot.Dialogs
                 context.Call(new Topic2_3_Dialog(), this.TopicX_X_DialogResumeAfter);
             }
 
+            // Topic 3
+            else if (message.Text.ToLowerInvariant() == Resources.Topic3_Nav_Cmd.ToLowerInvariant())
+            {
+                context.Call(new Topic3Dialog(), this.TopicX_X_DialogResumeAfter);
+            }
+            else if (message.Text.ToLowerInvariant() == Resources.Topic3_1_Nav_Cmd.ToLowerInvariant())
+            {
+                context.Call(new Topic3_1_Dialog(), this.TopicX_X_DialogResumeAfter);
+            }
+            else if (message.Text.ToLowerInvariant() == Resources.Topic3_2_Nav_Cmd.ToLowerInvariant())
+            {
+                context.Call(new Topic3_2_Dialog(), this.TopicX_X_DialogResumeAfter);
+            }
+            else if (message.Text.ToLowerInvariant() == Resources.Topic3_3_Nav_Cmd.ToLowerInvariant())
+            {
+                context.Call(new Topic3_3_Dialog(), this.TopicX_X_DialogResumeAfter);
+            }
 
             else
             {
@@ -93,6 +112,8 @@ namespace NavigationBot.Dialogs
                 Buttons = new List<CardAction>
                 {
                     new CardAction(ActionTypes.ImBack, Resources.Topic1_Nav_Cmd, value: Resources.Topic1_Nav_Cmd),
+                    new CardAction(ActionTypes.ImBack, Resources.Topic2_Nav_Cmd, value: Resources.Topic2_Nav_Cmd),
+                    new CardAction(ActionTypes.ImBack, Resources.Topic3_Nav_Cmd, value: Resources.Topic3_Nav_Cmd),
                 }
             };
 

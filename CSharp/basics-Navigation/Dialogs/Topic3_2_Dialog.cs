@@ -56,7 +56,7 @@ namespace NavigationBot.Dialogs
 
                 if (message == Resources.MoreReply)
                 {
-                    PromptDialog.Choice(context, this.FourthPromptResumeAfter, new[] { Resources.Topic1_Nav_Cmd, Resources.Main_Nav_Cmd }, "Topic 3.2 Dialog is done. What do you want to do next?...", "I'm sorry, I don't understand. Please try again.");
+                    PromptDialog.Choice(context, this.FourthPromptResumeAfter, new[] { Resources.Topic3_Nav_Cmd, Resources.Main_Nav_Cmd }, "Topic 3.2 Dialog is done. What do you want to do next?...", "I'm sorry, I don't understand. Please try again.");
                 }
             }
             catch (TooManyAttemptsException)
