@@ -11,7 +11,7 @@ namespace NavigationBot.Dialogs
     {
         public async Task StartAsync(IDialogContext context)
         {
-            PromptDialog.Choice(context, this.FirstPromptResumeAfter, new[] { Resources.MoreReply }, "SubBot 1.1 Dialog dialog text...", "I'm sorry, I don't understand. Please try again.");
+            PromptDialog.Choice(context, this.FirstPromptResumeAfter, new[] { Resources.MoreReply }, "Topic 1.1 Dialog dialog text...", "I'm sorry, I don't understand. Please try again.");
         }
 
         private async Task FirstPromptResumeAfter(IDialogContext context, IAwaitable<string> result)
@@ -22,7 +22,7 @@ namespace NavigationBot.Dialogs
 
                 if (message == Resources.MoreReply)
                 {
-                    PromptDialog.Choice(context, this.SecondPromptResumeAfter, new[] { Resources.MoreReply }, "SubBot 1.1 Dialog second dialog text...", "I'm sorry, I don't understand. Please try again.");
+                    PromptDialog.Choice(context, this.SecondPromptResumeAfter, new[] { Resources.MoreReply }, "Topic 1.1 Dialog second dialog text...", "I'm sorry, I don't understand. Please try again.");
                 }
             }
             catch (TooManyAttemptsException)
@@ -39,7 +39,7 @@ namespace NavigationBot.Dialogs
 
                 if (message == Resources.MoreReply)
                 {
-                    PromptDialog.Choice(context, this.ThirdPromptResumeAfter, new[] { Resources.MoreReply }, "SubBot 1.1 Dialog third dialog text...", "I'm sorry, I don't understand. Please try again.");
+                    PromptDialog.Choice(context, this.ThirdPromptResumeAfter, new[] { Resources.MoreReply }, "Topic 1.1 Dialog third dialog text...", "I'm sorry, I don't understand. Please try again.");
                 }
             }
             catch (TooManyAttemptsException)
@@ -56,7 +56,7 @@ namespace NavigationBot.Dialogs
 
                 if (message == Resources.MoreReply)
                 {
-                    PromptDialog.Choice(context, this.FourthPromptResumeAfter, new[] { Resources.Topic1_Nav_Cmd, Resources.MainBot_Menu }, "SubBot 1.1 Dialog is done. What do you want to do next?...", "I'm sorry, I don't understand. Please try again.");
+                    PromptDialog.Choice(context, this.FourthPromptResumeAfter, new[] { Resources.Topic1_Nav_Cmd, Resources.Main_Nav_Cmd }, "Topic 1.1 Dialog is done. What do you want to do next?...", "I'm sorry, I don't understand. Please try again.");
                 }
             }
             catch (TooManyAttemptsException)
