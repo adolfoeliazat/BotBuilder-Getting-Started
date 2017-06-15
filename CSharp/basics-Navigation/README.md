@@ -23,13 +23,29 @@ Bots are just apps. But, what is navigation in bots? How do you make the capabil
 
 #### Bot Navigation
 
-Navigation = changing the topic of covnersation. 
+In a bot, navigation is the capability for the user to change the topic of conversation. Navigation allows the user to say "I want to talk about this vs. that", changing the topic of conversation to another conversation flow.
+
+Bots support navigation, or changes in the topic of conversation, by supporting navigation commands. Navigationi commands are key words or phrases that the bot listens for to change the topic of conversation. For example, the bot could listen for the word "Locations" to change teh conversation to helping the user find and learn about the locations for a chain of retail stores.
+
+Navigation commands are different from replies. Replies are responses to the current prompt in the current conversation flow. Replies move the current conversation flow forward. For example, if the current prompt in the conversation flow is "What is your name?", the user responding with "My name is Chris." is a reply to that question.
+
+Discoerability = adding navigation to the conversation
+
+Wayfinding = adding navigation t the conversation.
+
+
+
+
+
+Communicate these nav commands to help discover the topics of conversation supported.
 
 vs. Replies = carrying on with teh current conversation.
 
 I want to talk aobut this vs. that.
 
 vs. "What is your name?", "My name is Chris."
+
+
 
 In this sample, navigation is accomplished via middleware. Examine every message, look for navigation commands that would change the topic of convesation. In this example, we pattern match commands, but could be natural language in teh future.
 
