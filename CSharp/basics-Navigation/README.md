@@ -68,6 +68,10 @@ Let's look at how this is done in code.
 
 #### Creating the Navigation Global Message Handler
 
+The navigation middleware is implemented in the [`NavigationScorable`](Navigation\NavigationScorable.cs) class, which implements the `IScorable` interface by inheriting from `ScorableBase`.
+
+`NavigationScorable` uses it's `navigationCommands` variable to store all the navigation commands implemented in the bot. `navigationCommands` is populated with navigation commands in the constructor of `NavigationScorable`.
+
 ````C#
     public class NavigationScorable : ScorableBase<IActivity, string, double>
     {
@@ -107,6 +111,8 @@ Let's look at how this is done in code.
         }
 ````
 
+When messages are recieved by the bot, they are inspected in `PrepareAsync()` to see if they match one of the navigation commands.
+
 ````C#
         protected override async Task<string> PrepareAsync(IActivity activity, CancellationToken token)
         {
@@ -128,6 +134,8 @@ Let's look at how this is done in code.
         }
 ````
 
+If the message matches a navigation command, `PostAsync()` is called and the dialog stack is reset and the message is forward `RootDialog` to start a new conversation flow.
+
 ````C#
         protected override async Task PostAsync(IActivity item, string state, CancellationToken token)
         {
@@ -146,6 +154,10 @@ Let's look at how this is done in code.
 ````
 
 #### Fielding the Navigation Command in RootDialog
+
+In [`RootDialog`](Dialogs\RootDialog.cs), `MessageReceived()` fields the navigation commands for bot, either by showing the bot's navigation menu ("Menu"), via `ShowNavMenuAsync()`, by loading the dialog that corresponds to the navigation command ("Topic 1").
+
+`RootDialog1` is a purely navigation based dialog, so it only expects navigation commands. If the message is not a navigation command, `RootDialog` lets the user know and shows the navigation menu again.
 
 ````C#
     [Serializable]
@@ -193,6 +205,8 @@ Let's look at how this is done in code.
         }
 ````
 
+`ShowNavMenuAsync()` shows a navigation menu, with navigation buttons for it's top level conversation topics ("Topic 1", "Topic 2", "Topic 3") and a reminder on how to show this menu at any time in the conversation ("Menu", for wayfinding). 
+
 ````C#
         private async Task ShowNavMenuAsync(IDialogContext context)
         {
@@ -226,6 +240,8 @@ Let's look at how this is done in code.
         }
 ````
 
+Navigation commands are forwarded to `RootDialog` from the `NavigationScorable` so the `RootDialog` can respond whether the dialog for the navigation commands completes successfully via `Done()` or unsuccessfully via `Failed()`.
+
 ````C#
         private async Task TopicX_X_DialogResumeAfter(IDialogContext context, IAwaitable<object> result)
         {
@@ -246,14 +262,133 @@ Let's look at how this is done in code.
 
 #### Topic1Dialog
 
-
-
-#### Topic1_1_1Dialog
-
+`Topic1Dialog1`, like `RootDialog`, is a pure navigation dialog, showing a navigation menu with buttons that correspond to it's navigation sub-topics ("Topic 1.1", "Topic 1.2", "Topic 1.3"). If the user clicks one of the buttons on the menu or types the navigation command, it's picked up by `NavigationScorable` and `RootDialog` will call the appropriate dialog. A message other than a navigation command, for "Topic 1" or one of it's sub-topics, won't be understood by the bot, so the navigation menu will be reshown.
 
 ````C#
+    [Serializable]
+    public class Topic1Dialog : IDialog<object>
+    {
+        public async Task StartAsync(IDialogContext context)
+        {
+            await this.ShowNavMenuAsync(context);
+        }
+
+        private async Task ShowNavMenuAsync(IDialogContext context)
+        {
+            var reply = context.MakeMessage();
+
+            var menuHeroCard = new HeroCard
+            {
+                Buttons = new List<CardAction>
+                {
+                    new CardAction(ActionTypes.ImBack, Resources.Topic1_1_Nav_Cmd, value: Resources.Topic1_1_Nav_Cmd),
+                    new CardAction(ActionTypes.ImBack, Resources.Topic1_2_Nav_Cmd, value: Resources.Topic1_2_Nav_Cmd),
+                    new CardAction(ActionTypes.ImBack, Resources.Topic1_3_Nav_Cmd, value: Resources.Topic1_3_Nav_Cmd),
+                    new CardAction(ActionTypes.ImBack, Resources.Main_Nav_Cmd, value: Resources.Main_Nav_Cmd)
+                }
+            };
+
+            reply.Attachments.Add(menuHeroCard.ToAttachment());
+
+            await context.PostAsync(reply);
+
+            context.Wait(this.ShowNavMenuResumeAfterAsync);
+        }
+
+        private async Task ShowNavMenuResumeAfterAsync(IDialogContext context, IAwaitable<IMessageActivity> result)
+        {
+            var message = await result;
+
+            // If we got here, it's because something other than a navigation command was sent to the bot (navigation commands are handled in NavigationScorable middleware), 
+            //  and this dialog only supports navigation commands, so explain bot doesn't understand the message.
+            await this.StartOverAsync(context, string.Format(Resources.Do_Not_Understand, message.Text));
+        }
+
+        private async Task StartOverAsync(IDialogContext context, string text)
+        {
+            var message = context.MakeMessage();
+            message.Text = text;
+            await this.StartOverAsync(context, message);
+        }
+
+        private async Task StartOverAsync(IDialogContext context, IMessageActivity message)
+        {
+            await context.PostAsync(message);
+            await this.ShowNavMenuAsync(context);
+        }
+    }
 ````
 
+#### Topic1_1_Dialog
+
+`Topic1_1_Dialog`, is a conversation flow dialog that prompts the user and expects replies to move the conversation forward. 
+
+Command by middelware
+
+Or reply to prompt, only "More", otherwise DnD.
+
+````C#
+    public class Topic1_1_Dialog : IDialog<object>
+    {
+        public async Task StartAsync(IDialogContext context)
+        {
+            PromptDialog.Choice(context, this.FirstPromptResumeAfter, new[] { Resources.MoreReply }, "Topic 1.1 Dialog dialog text...", "I'm sorry, I don't understand. Please try again.");
+        }
+
+        private async Task FirstPromptResumeAfter(IDialogContext context, IAwaitable<string> result)
+        {
+            try
+            {
+                var message = await result;
+
+                if (message == Resources.MoreReply)
+                {
+                    PromptDialog.Choice(context, this.SecondPromptResumeAfter, new[] { Resources.MoreReply }, "Topic 1.1 Dialog second dialog text...", "I'm sorry, I don't understand. Please try again.");
+                }
+            }
+            catch (TooManyAttemptsException)
+            {
+                context.Fail(new TooManyAttemptsException("Too many attempts."));
+            }
+        }
+
+````
+
+````C#
+        private async Task ThirdPromptResumeAfter(IDialogContext context, IAwaitable<string> result)
+        {
+            try
+            {
+                var message = await result;
+
+                if (message == Resources.MoreReply)
+                {
+                    PromptDialog.Choice(context, this.FourthPromptResumeAfter, new[] { Resources.Topic1_Nav_Cmd, Resources.Main_Nav_Cmd }, "Topic 1.1 Dialog is done. What do you want to do next?...", "I'm sorry, I don't understand. Please try again.");
+                }
+            }
+            catch (TooManyAttemptsException)
+            {
+                context.Fail(new TooManyAttemptsException("Too many attempts."));
+            }
+        }
+````
+
+````C#
+        private async Task FourthPromptResumeAfter(IDialogContext context, IAwaitable<string> result)
+        {
+            try
+            {
+                var message = await result;
+
+                // If we got here, it's because something other than a navigation command was sent, and at this point only navigation commands are supported.
+                await this.StartOverAsync(context, $"I'm sorry, I don't understand '{ message }'.");
+            }
+            catch (TooManyAttemptsException)
+            {
+                context.Fail(new TooManyAttemptsException("Too many attempts."));
+            }
+        }
+````
 
 ### More information
 
