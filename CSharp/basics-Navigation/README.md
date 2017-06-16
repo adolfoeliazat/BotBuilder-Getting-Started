@@ -15,13 +15,13 @@ This sample assumes you're familiar with:
 
 #### App Navigation
 
-In mobile or web app navigation, the UI canvas includes navigation UI (e.g. navigation header, breadcrumb, links, a back button, buttons, content, etc.) that not only provides navigation to the featuress of the app, but also promotes discoverability and wayfinding of the app. 
+In mobile or web app navigation, the UI canvas includes navigation UI (e.g. navigation header, breadcrumb, links, a back button, buttons, content, etc.) that not only provides navigation to the features of the app, but also promotes discoverability and wayfinding of the app. 
 
 The navigation UI in apps provides discoverability of the features and content of the app just by being visible on the UI canvas. Users are accustomed to scrolling around and clicking on UI controls and content to access features and content of the app. 
 
 The navigation UI in apps promotes wayfinding for users by communicating where the user can go (e.g. navigation headers or menus, links, buttons, content), where they are (e.g. breadcrumbs, page content), and how they can get back (e.g. back button). These wayfinding tools helps users feel comfortable exploring the app. Users know where they are in the app, how they got there, and how to get back, so users feel free to explore.
 
-Bots are just apps. But, what is navigation in a bot? How do you make the navigation optioins, or capabilities and features, of your bot discoverable? How to do promote wayfinding in a bot so users feel free to explore the capabilities and features of the bot?
+Bots are just apps. But, what is navigation in a bot? How do you make the navigation options, or capabilities and features, of your bot discoverable? How to do promote wayfinding in a bot so users feel free to explore the capabilities and features of the bot?
 
 #### Bot Navigation
 
@@ -29,7 +29,7 @@ In a bot, navigation is the ability for the user to change the topic of conversa
 
 Bots need to differentiate between the user wanting to navigate, or change the topic of conversation, from the user just replying to the current prompt in the current conversation.
 
-Bots support navigation commands to support changes in the topic of conversation. Navigation commands are key words or phrases that the bot listens for in the conversation. If the bot receives a navigation command, the bot changes the topic of conversation to correpsond to the navigation command. For example, a bot for a chain of retail stores could listen for the word "Locations" to change the conversation to talk about their locations (e.g. helping the user find and learn about the location near them).
+Bots support navigation commands to support changes in the topic of conversation. Navigation commands are key words or phrases that the bot listens for in the conversation. If the bot receives a navigation command, the bot changes the topic of conversation to correspond to the navigation command. For example, a bot for a chain of retail stores could listen for the word "Locations" to change the conversation to talk about their locations (e.g. helping the user find and learn about the location near them).
 
 Navigation commands are different from replies. Replies are responses to the current prompt in the current dialog. Replies move the current conversation forward. For example, if the current prompt in the conversation flow is "What is your name?", the user responding with "My name is Chris." is a reply to that question.
 
@@ -39,15 +39,15 @@ Bots can promote wayfinding in the conversation by introducing navigation comman
 
 #### Implementing Navigation Commands
 
-In this sample, navigation commands are implemented via [Global Message Handlers](https://docs.microsoft.com/en-us/bot-framework/dotnet/bot-builder-dotnet-global-handlers). Review the Global Message Handler sample to understand how `Autofac`, `IScorable` and `Scorablebase` are used in the Bot Builder SDK to implement global message middelware. In this sample, Global Message Handlers examines every message in the conversation looking for navigation commands. When the text of a message to the bot matches a navigation command, the bot resets the dialog stack and starts the conversation flow that corresponds to the command.
+In this sample, navigation commands are implemented via [Global Message Handlers](https://docs.microsoft.com/en-us/bot-framework/dotnet/bot-builder-dotnet-global-handlers). Review the Global Message Handler sample to understand how `Autofac`, `IScorable` and `Scorablebase` are used in the Bot Builder SDK to implement global message middleware. In this sample, Global Message Handlers examines every message in the conversation looking for navigation commands. When the text of a message to the bot matches a navigation command, the bot resets the dialog stack and starts the conversation flow that corresponds to the command.
 
-Simple text matching is used in this sample to identify navigation commands in the conversaiton, but natural language processing (for examle via [LUIS](https://www.luis.ai/)) could also be used.
+Simple text matching is used in this sample to identify navigation commands in the conversation, but natural language processing (for examle via [LUIS](https://www.luis.ai/)) could also be used.
 
-Navigation is made discoverable by introducing navigation UI into the conversation. This is done via HeroCard with and buttons. User can can easily see their navigation options without having to remember specific commands.
+Navigation is made discoverable by introducing navigation UI into the conversation. This is done via HeroCard with and buttons. User can easily see their navigation options without having to remember specific commands.
 
-Wayfinding is promoted by providing conversational UI that makes it easy for the user to return to a prior topic of conversatoin or to easily be reminded of all the possible topics of conversation. These commands are available from anywhere, whether the user clicks on a button or just types the command.
+Wayfinding is promoted by providing conversational UI that makes it easy for the user to return to a prior topic of conversation or to easily be reminded of all the possible topics of conversation. These commands are available from anywhere, whether the user clicks on a button or just types the command.
 
-**Note:** In this sample, navigation commands like "Back" and "Cancel" aren't used, since they feel unnatural within a conversation. Rather than providing navigation commands that move the conversation back ("Back", "Cancel"), navigation UI is provided to move the conversation forward. This is done by providing navigation commands that allow the user to tell you what they want to talk about next, rather than providing commands to move back in the conersation. 
+**Note:** In this sample, navigation commands like "Back" and "Cancel" aren't used, since they feel unnatural within a conversation. Rather than providing navigation commands that move the conversation back ("Back", "Cancel"), navigation UI is provided to move the conversation forward. This is done by providing navigation commands that allow the user to tell you what they want to talk about next, rather than providing commands to move back in the conversation. 
 
 Let's look at the sample in action.
 
@@ -57,7 +57,7 @@ In this sample, NavigationBot has a navigation hierarchy of three conversation t
 
 Run NavigationBot and type "Menu". This will cause NavigationBot to reply with a navigation menu to shows the bot's conversation topics/capabilities and nice and easy buttons the user can click on to navigate to those capabilities.  This promotes discoverability. 
 
-Note the hint letting the user know they can say "Menu" at any time to see this menu again. This promotes wayfinding. The user always know how to return to this menu, so they don't have to worry about getting lost.
+Note the hint letting the user know they can say "Menu" at any time to see this menu again. This promotes wayfinding. The user always knows how to return to this menu, so they don't have to worry about getting lost.
 
 ![MainMenu](images/1_mainmenu.png)
 
@@ -87,7 +87,7 @@ Click the "Topic 1" button to see that menu again.
 
 ![Topic1.1ReturnTopic1](images/7_topic1_1returntopic1.png)
 
-Click the "Menu" button to return to the top level navigation menu.
+Click the "Menu" button to return to the top-level navigation menu.
 
 ![ReturnMainMenu](images/8_returntomainmenu.png)
 
@@ -140,7 +140,7 @@ The navigation middleware is implemented in the [`NavigationScorable`](Navigatio
         }
 ````
 
-When messages are recieved by the bot, they are inspected in `PrepareAsync()` to see if they match one of the navigation commands.
+When messages are received by the bot, they are inspected in `PrepareAsync()` to see if they match one of the navigation commands.
 
 ````C#
         protected override async Task<string> PrepareAsync(IActivity activity, CancellationToken token)
@@ -234,7 +234,7 @@ In [`RootDialog`](Dialogs\RootDialog.cs), `MessageReceived()` fields the navigat
         }
 ````
 
-`ShowNavMenuAsync()` posts `RootDialog`'s navigation menu via a `HeroCard`, with `CardAction` buttons for it's top level conversation topics ("Topic 1", "Topic 2", "Topic 3"). The menu also has reminder for the user on how to show this menu again at any time in the conversation ("Menu", for wayfinding). 
+`ShowNavMenuAsync()` posts `RootDialog`'s navigation menu to the conversation via a `HeroCard`, with `CardAction` buttons for it's top level conversation topics ("Topic 1", "Topic 2", "Topic 3"). The menu also has reminder to the user on how to show that menu again (typing "Menu" at any time). 
 
 ````C#
         private async Task ShowNavMenuAsync(IDialogContext context)
@@ -269,7 +269,7 @@ In [`RootDialog`](Dialogs\RootDialog.cs), `MessageReceived()` fields the navigat
         }
 ````
 
-Navigation commands are forwarded to `RootDialog` from the `NavigationScorable` so the `RootDialog` can respond whether the dialog for the navigation commands completes successfully via `Done()` or unsuccessfully via `Failed()`.
+Navigation commands are forwarded to `RootDialog` from the `NavigationScorable` so `RootDialog` can respond whether the dialog for the navigation commands completes successfully via `Done()` or unsuccessfully via `Fail()`.
 
 ````C#
         private async Task TopicX_X_DialogResumeAfter(IDialogContext context, IAwaitable<object> result)
@@ -291,7 +291,7 @@ Navigation commands are forwarded to `RootDialog` from the `NavigationScorable` 
 
 #### Topic1Dialog
 
-[`Topic1Dialog1`](Dialogs\Topic1Dialog.cs), like `RootDialog`, is a pure navigation dialog, showing a navigation menu with buttons that correspond to it's navigation sub-topics ("Topic 1.1", "Topic 1.2", "Topic 1.3"). If the user clicks one of the buttons on the menu or types a navigation command, it's picked up by `NavigationScorable` and `RootDialog` will call the appropriate dialog to add it to the stack. A message other than a navigation command, for "Topic 1" or one of it's sub-topics, won't be understood by the bot, and the navigation menu will be reshown along with a "Do not understand" message.
+[`Topic1Dialog1`](Dialogs\Topic1Dialog.cs), like `RootDialog`, is a pure navigation dialog, showing a navigation menu with buttons that correspond to its navigation sub-topics ("Topic 1.1", "Topic 1.2", "Topic 1.3"). If the user clicks one of the buttons on the menu or types a navigation command, the command is posted to the conversation and picked up by `NavigationScorable` and passed to `RootDialog`. `RootDialog` will call the appropriate dialog to add it to the stack. A message other than a navigation command, for "Topic 1" or one of it's sub-topics won't be understood by the bot, and the navigation menu will be reshown along with a "do not understand" message.
 
 ````C#
     [Serializable]
@@ -350,11 +350,11 @@ Navigation commands are forwarded to `RootDialog` from the `NavigationScorable` 
 
 #### Topic1_1_Dialog
 
-[`Topic1_1_Dialog`](Dialogs\Topic1_1_Dialog.cs), is a conversation flow dialog that prompts the user and expects replies to move the conversation forward. 
+[`Topic1_1_Dialog`](Dialogs\Topic1_1_Dialog.cs), is a conversation flow dialog that prompts the user and expects specific replies to move the conversation forward. 
 
-In `StartAsync()`, the user shown some conversation text and offered to move the conversation forward via a [`PromptDialog.Choice()`](https://docs.botframework.com/en-us/csharp/builder/sdkreference/d9/d03/class_microsoft_1_1_bot_1_1_builder_1_1_dialogs_1_1_prompt_dialog.html#a27c7bcc6d37046cc15895a9bbda14b6b) (just by replying with "More"). If the user replies with a navigation command, again that will be picked up by `NavigationScorable`, which will hand the navigation. All other replies from the user will be assumed to be replies to the current prompt.
+In `StartAsync()`, the user is shown some conversation text and offered to move the conversation forward via a [`PromptDialog.Choice()`](https://docs.botframework.com/en-us/csharp/builder/sdkreference/d9/d03/class_microsoft_1_1_bot_1_1_builder_1_1_dialogs_1_1_prompt_dialog.html#a27c7bcc6d37046cc15895a9bbda14b6b) (just by replying with "More"). If the user replies with any of the navigation commands for the bot, that will be picked up by `NavigationScorable`, which will handle the navigation. All other replies from the user will be assumed to be replies to the current prompt.
 
-Or reply to prompt, only "More", otherwise DnD.
+If they user replies with "More", `FirstPromptResumeAfter()` will be called. If the user replies with anything else, `PromptDialog.Choice()' will reprompt 3 times before failing the dialog.
 
 ````C#
     public class Topic1_1_Dialog : IDialog<object>
@@ -383,7 +383,7 @@ Or reply to prompt, only "More", otherwise DnD.
 
 ````
 
-When `Topic1_1_Dialog`'s conversation flow is complete, is shows a 'PromptDialog.Choice()' prompt providing the user some navigation commands to either return to `Topic1Dialog` ("Topic1") and see it's navigation command menu or to return to `RootDialog` ("Menu") to see the top level navigation menu.
+When `Topic1_1_Dialog`'s conversation flow is complete, the dialog shows a `PromptDialog.Choice()` prompt providing the user some navigation commands to either return to `Topic1Dialog` ("Topic1") and see it's navigation menu or to return to `RootDialog` ("Menu") to see the top level navigation menu.
 
 ````C#
         private async Task ThirdPromptResumeAfter(IDialogContext context, IAwaitable<string> result)
@@ -419,7 +419,10 @@ When `Topic1_1_Dialog`'s conversation flow is complete, is shows a 'PromptDialog
         }
 ````
 
-In the code above, you can see how the code deliniates beteween navigation commands and replies, provides discoverabliltiy by showing the navigation commands within the conversation via menus and buttons, and promotes wayfinding by providing navigation command UI throughout the conversation to help users navigate capabilities of the bot.
+In the sample walkthrough and code above above, you can see how the bot:
+* Delineate between navigation commands and replies in the conversation.
+* Provides navigation discoverabliltiy by showing the navigation commands within the conversation via menus and buttons so the user can see the capabilities of the bot and easily navigate to them.
+* Promotes wayfinding by providing navigation command UI throughout the conversation to help users navigate the capabilities of the bot.
 
 ### More information
 
