@@ -109,6 +109,7 @@ namespace NavigationBot.Dialogs
 
             var menuHeroCard = new HeroCard
             {
+                Text = "Please choose from the options below. To see these options again, just say 'Menu'.",
                 Buttons = new List<CardAction>
                 {
                     new CardAction(ActionTypes.ImBack, Resources.Topic1_Nav_Cmd, value: Resources.Topic1_Nav_Cmd),
