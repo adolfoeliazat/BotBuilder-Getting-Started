@@ -262,7 +262,7 @@ Navigation commands are forwarded to `RootDialog` from the `NavigationScorable` 
 
 #### Topic1Dialog
 
-`Topic1Dialog1`, like `RootDialog`, is a pure navigation dialog, showing a navigation menu with buttons that correspond to it's navigation sub-topics ("Topic 1.1", "Topic 1.2", "Topic 1.3"). If the user clicks one of the buttons on the menu or types the navigation command, it's picked up by `NavigationScorable` and `RootDialog` will call the appropriate dialog. A message other than a navigation command, for "Topic 1" or one of it's sub-topics, won't be understood by the bot, so the navigation menu will be reshown.
+[`Topic1Dialog1`](Dialogs\Topic1Dialog.cs), like `RootDialog`, is a pure navigation dialog, showing a navigation menu with buttons that correspond to it's navigation sub-topics ("Topic 1.1", "Topic 1.2", "Topic 1.3"). If the user clicks one of the buttons on the menu or types a navigation command, it's picked up by `NavigationScorable` and `RootDialog` will call the appropriate dialog to add it to the stack. A message other than a navigation command, for "Topic 1" or one of it's sub-topics, won't be understood by the bot, and the navigation menu will be reshown along with a "Do not understand" message.
 
 ````C#
     [Serializable]
@@ -321,9 +321,9 @@ Navigation commands are forwarded to `RootDialog` from the `NavigationScorable` 
 
 #### Topic1_1_Dialog
 
-`Topic1_1_Dialog`, is a conversation flow dialog that prompts the user and expects replies to move the conversation forward. 
+[`Topic1_1_Dialog`](Dialogs\Topic1_1_Dialog.cs), is a conversation flow dialog that prompts the user and expects replies to move the conversation forward. 
 
-Command by middelware
+In `StartAsync()`, the user shown some conversation text and offered to move the conversation forward via a [`PromptDialog.Choice()`](https://docs.botframework.com/en-us/csharp/builder/sdkreference/d9/d03/class_microsoft_1_1_bot_1_1_builder_1_1_dialogs_1_1_prompt_dialog.html#a27c7bcc6d37046cc15895a9bbda14b6b) (just by replying with "More"). If the user replies with a navigation command, again that will be picked up by `NavigationScorable`, which will hand the navigation. All other replies from the user will be assumed to be replies to the current prompt.
 
 Or reply to prompt, only "More", otherwise DnD.
 
@@ -354,6 +354,8 @@ Or reply to prompt, only "More", otherwise DnD.
 
 ````
 
+When `Topic1_1_Dialog`'s conversation flow is complete, is shows a 'PromptDialog.Choice()' prompt providing the user some navigation commands to either return to `Topic1Dialog` ("Topic1") and see it's navigation command menu or to return to `RootDialog` ("Menu") to see the top level navigation menu.
+
 ````C#
         private async Task ThirdPromptResumeAfter(IDialogContext context, IAwaitable<string> result)
         {
@@ -371,9 +373,7 @@ Or reply to prompt, only "More", otherwise DnD.
                 context.Fail(new TooManyAttemptsException("Too many attempts."));
             }
         }
-````
 
-````C#
         private async Task FourthPromptResumeAfter(IDialogContext context, IAwaitable<string> result)
         {
             try
@@ -389,6 +389,8 @@ Or reply to prompt, only "More", otherwise DnD.
             }
         }
 ````
+
+In the code above, you can see how the code deliniates beteween navigation commands and replies, provides discoverabliltiy by showing the navigation commands within the conversation via menus and buttons, and promotes wayfinding by providing navigation command UI throughout the conversation to help users navigate capabilities of the bot.
 
 ### More information
 
